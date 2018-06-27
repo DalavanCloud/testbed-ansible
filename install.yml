@@ -16,8 +16,10 @@
       become: true
 
     - name: install apt packages
-      apt: pkg={{ item }} state=latest update_cache={{ update_cache }}
-      with_items: packages_to_install
+      apt: 
+        name: "{{ packages_to_install }}"
+        state: latest
+        update_cache: "{{ update_cache }}"
       become: true
 
     - name: download intel iot   
