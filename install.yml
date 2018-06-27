@@ -1,0 +1,37 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: pi 
+  gather_facts: yes
+  vars:
+    update_cache: yes
+    packages_to_install: [ git, automake, build-essential, 
+        npm, python3-pip, python3-dev, vim, 
+        libusb-dev, libdbus-1-dev, libglib2.0-dev, libudev-dev, 
+        libical-dev, libreadline-dev, cmake
+        ]
+  tasks:
+    - name: update and upgrade 
+      apt: 
+        upgrade: safe
+      become: true
+
+    - name: install apt packages
+      apt: pkg={{ item }} state=latest update_cache={{ update_cache }}
+      with_items: packages_to_install
+      become: true
+
+    - name: download intel iot   
+      git: repo=https://github.com/intel-iot-devkit/tinyb.git dest=/home/pi/tinyb
+
+    - name: create and change direcotry for intel iot
+      file:
+        path: /home/pi/tinyb/build
+        state: directory
+        owner: pi
+        mode: 0755
+
+    - name: compile intel iot
+      become: true
+      shell: cd /home/pi/tinyb/build && cmake .. && make && make install
+
+
