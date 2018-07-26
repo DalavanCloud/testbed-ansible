@@ -10,3 +10,11 @@ berry8 ansible_ssh_host=192.168.0.18 ansible_ssh_user=pi ansible_ssh_pass=raspbe
 berry9 ansible_ssh_host=192.168.0.19 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
 berry10 ansible_ssh_host=192.168.0.20 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
 berry11 ansible_ssh_host=192.168.0.21 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
+berry12 ansible_ssh_host=192.168.0.22 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
+berry13 ansible_ssh_host=192.168.0.23 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
+berry14 ansible_ssh_host=192.168.0.24 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
+berry15 ansible_ssh_host=192.168.0.25 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
+berry16 ansible_ssh_host=192.168.0.26 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
+berry17 ansible_ssh_host=192.168.0.27 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
+berry18 ansible_ssh_host=192.168.0.28 ansible_ssh_user=pi ansible_ssh_pass=raspberry host_key_checking=false
+

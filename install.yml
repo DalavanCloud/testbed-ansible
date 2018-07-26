@@ -24,6 +24,7 @@
 
     - name: download intel iot   
       git: repo=https://github.com/intel-iot-devkit/tinyb.git dest=/home/pi/tinyb
+      register: gitclone
 
     - name: create and change direcotry for intel iot
       file:
@@ -35,5 +36,6 @@
     - name: compile intel iot
       become: true
       shell: cd /home/pi/tinyb/build && cmake .. && make && make install
+      when: gitclone.changed
 
 
