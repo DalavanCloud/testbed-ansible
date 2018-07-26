@@ -5,4 +5,14 @@
   vars:
 
   tasks:
-    - name: 
+    - name: wlan settings
+      become: true
+      command: "{{ item }}"
+      with_items:
+      - ifconfig wlan0 down
+      - iwconfig wlan0 mode ad-hoc
+      - iwconfig wlan0 key aaaaa11111 #WEP KEY
+      - iwconfig wlan0 essid raspi-net      #SSID
+      - ipconfig wlan0 ipvi netmask mask up
+
+
