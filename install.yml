@@ -26,7 +26,7 @@
       git: repo=https://github.com/intel-iot-devkit/tinyb.git dest=/home/pi/tinyb
       register: gitclone
 
-    - name: create and change direcotry for intel iot
+    - name: create and change directory for intel iot
       file:
         path: /home/pi/tinyb/build
         state: directory

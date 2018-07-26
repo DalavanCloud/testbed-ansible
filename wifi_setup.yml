@@ -1,0 +1,8 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: pi
+  gather_facts: yes
+  vars:
+
+  tasks:
+    - name: 
