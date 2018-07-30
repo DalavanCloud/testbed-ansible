@@ -38,4 +38,15 @@
       shell: cd /home/pi/tinyb/build && cmake .. && make && make install
       when: gitclone.changed
 
+    - name: generate ssh key pair
+      user: 
+        name: pi 
+        generate_ssh_key: yes 
+        ssh_key_comment: {{ inventory_hostname }}
+
+    - name: distribute pubkey to other hosts
+      authorized_keys:
+        key: 
+        user: pi
+        
 
