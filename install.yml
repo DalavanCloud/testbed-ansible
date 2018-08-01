@@ -9,6 +9,9 @@
         libusb-dev, libdbus-1-dev, libglib2.0-dev, libudev-dev, 
         libical-dev, libreadline-dev, cmake
         ]
+    key_location: /home/xpalant/.ssh/id_rsa
+    ssh_config_location: /home/xpalant/.ssh/config
+    sshd_config_file: /home/xpalant/tools/testbed-ansible/template/sshd_config
   tasks:
     - name: update and upgrade 
       apt: 
@@ -38,15 +41,32 @@
       shell: cd /home/pi/tinyb/build && cmake .. && make && make install
       when: gitclone.changed
 
-    - name: generate ssh key pair
-      user: 
-        name: pi 
-        generate_ssh_key: yes 
-        ssh_key_comment: {{ inventory_hostname }}
-
-    - name: distribute pubkey to other hosts
-      authorized_keys:
-        key: 
-        user: pi
         
+    - name: give ssh key to all
+      become: true
+      copy:
+        src: "{{ key_location }}"
+        dest: /home/pi/.ssh/id_rsa
+        mode: 0600
+        owner: pi
+        group: pi
+        backup: yes
+
+
+    - name: give ssh config file to all
+      copy:
+        src: "{{ ssh_config_location }}"
+        dest: /home/pi/.ssh/config
+        owner: pi
+        group: pi
+        backup: yes
+
+    - name: change sshd_config to prevent root login and pw auth.
+      become: true
+      copy:
+        src: "{{ sshd_config_file }}"
+        dest: /etc/ssh/sshd_config
+        owner: root
+        group: root
+        backup: yes
 
